@@ -11,7 +11,7 @@ public class Check {
         this.action = new HashMap(2);
         action.put(true, new Choice() {
             @Override
-            public File isExist(File file) throws Exception {
+            public File isExist(File file) {
                 return file;
             }
         });

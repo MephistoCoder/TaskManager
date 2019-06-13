@@ -11,7 +11,7 @@ public class Starter {
         this.check = check;
     }
 
-    public void start ()  {
+    public void start () {
         File file = new File("C:\\MyFiles\\TaskManager\\src\\com\\company\\TaskManager.txt");
         try {
             this.targets = this.check.action.get(file.exists()).isExist(file);

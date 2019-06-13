@@ -9,9 +9,10 @@ public class Main {
         TaskContainer taskContainer = new TaskContainer(starter.getTargets());
         try {
             taskContainer.readTasks();
-            taskContainer.size();
         }catch (Exception e){
-
         }
+        Task task = new Task();
+        taskContainer.addTask(task);
+        taskContainer.getTasks();
     }
 }

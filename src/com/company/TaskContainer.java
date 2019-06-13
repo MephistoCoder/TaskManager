@@ -2,13 +2,15 @@ package com.company;
 
 import java.io.File;
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class TaskContainer {
-    private HashMap <Date, Task> container;
+    private HashMap <String, Task> container;
     File source;
     TaskContainer(File source){
         this.source = source;
+        container = new HashMap<>();
     }
     public void readTasks() throws Exception{
         FileReader fileReader = new FileReader(source);
@@ -23,9 +25,24 @@ public class TaskContainer {
             calendar.set(Calendar.MINUTE,        input.nextInt());
             calendar.set(Calendar.SECOND,        input.nextInt());
             task.setDate(calendar);
+            container.put(task.getDateString(), task);
         }
     }
     public int size(){
         return container.size();
+    }
+    public void addTask(Task newTask){
+        container.put(newTask.getDateString(), newTask);
+    }
+    public void getTasks () {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, d MMMM yyyy ");
+        Calendar tmp;
+        for (Task task: container.values()
+             ) {
+            int i = 1;
+            tmp = task.getDate();
+            System.out.println(i + ". " + task.getTarget() + ". Время : " + dateFormat.format(tmp.getTime()));
+            i++;
+        }
     }
 }
