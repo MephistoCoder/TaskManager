@@ -9,13 +9,16 @@ public class Task {
     private String target;
     private GregorianCalendar date;
     private String dateString;
-
+    private int taskNumber;
+    private static int amount;
     Task(String target){
         this.target = target;
         this.date = new GregorianCalendar();
+        amount++;
     }
     Task(){
         date = new GregorianCalendar();
+        amount++;
         createTask();
     }
 
@@ -35,11 +38,16 @@ public class Task {
         return target;
     }
 
+    public int getTaskNumber() {
+        return taskNumber;
+    }
+
     public void createTask (){
         Scanner input = new Scanner(System.in);
         boolean check = true;
         SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd.MM.yyyy");
         SimpleDateFormat outputDateFormat = new SimpleDateFormat("EEEE, d MMMM yyyy ");
+        taskNumber = amount;
         System.out.println("Введите описание задания, после нажмите Enter");
         target = input.nextLine();
         while (check) {

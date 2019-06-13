@@ -45,4 +45,26 @@ public class TaskContainer {
             i++;
         }
     }
+    public void removeTask(){
+        Scanner input = new Scanner(System.in);
+        int number;
+        HashMap <Boolean, Remove> map = new HashMap<>();
+        map.put(true, new Remove() {
+            @Override
+            public void remove(Task task) {
+                container.remove(task.getDateString());
+            }
+        });
+        map.put(true, new Remove() {
+            @Override
+            public void remove(Task task) {
+            }
+        });
+        System.out.println("Введите номер задания которое следует удалить");
+        number = input.nextInt();
+        for (Task task: container.values()
+        ) {
+            map.get(task.getTaskNumber() == number).remove(task);
+        }
+    }
 }
