@@ -10,7 +10,7 @@ public class Task {
     private GregorianCalendar date;
     private String dateString;
     private int taskNumber;
-    private static int amount;
+    private static int amount = 0;
     Task(String target){
         this.target = target;
         this.date = new GregorianCalendar();
@@ -42,11 +42,20 @@ public class Task {
         return taskNumber;
     }
 
+    public void setTaskNumber(int taskNumber) {
+        this.taskNumber = taskNumber;
+    }
+
+    public static void setNewTaskNumber(Task [] tasks) {
+        amount = 1;
+        for (int i = 0; i < tasks.length; i++, amount++)
+            tasks[i].setTaskNumber(amount);
+    }
+
     public void createTask (){
         Scanner input = new Scanner(System.in);
         boolean check = true;
         SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        SimpleDateFormat outputDateFormat = new SimpleDateFormat("EEEE, d MMMM yyyy ");
         taskNumber = amount;
         System.out.println("Введите описание задания, после нажмите Enter");
         target = input.nextLine();

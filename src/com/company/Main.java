@@ -7,12 +7,15 @@ public class Main {
         Starter starter = new Starter(check);
         starter.start();
         TaskContainer taskContainer = new TaskContainer(starter.getTargets());
+        Working process = new Working(taskContainer);
+
         try {
             taskContainer.readTasks();
         }catch (Exception e){
         }
-        Task task = new Task();
-        taskContainer.addTask(task);
-        taskContainer.getTasks();
+        process.start();
+//        Task task = new Task();
+//        taskContainer.addTask(task);
+//        taskContainer.getTasks();
     }
 }
