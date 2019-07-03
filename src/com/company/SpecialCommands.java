@@ -28,6 +28,7 @@ public class SpecialCommands {
         commands.put("/exit", new Command() {
             @Override
             public void action(TaskContainer taskContainer) {
+                taskContainer.writeTasks();
                 taskContainer.setStatus(false);
             }
         });

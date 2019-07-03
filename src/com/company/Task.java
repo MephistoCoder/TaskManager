@@ -2,6 +2,8 @@ package com.company;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
@@ -27,7 +29,10 @@ public class Task {
     }
 
     public String getDateString() {
-        return date.toString();
+        Date date = new Date();
+        date = this.date.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.YYYY HH:mm");
+        return sdf.format(date);
     }
 
     public GregorianCalendar getDate() {
@@ -42,25 +47,27 @@ public class Task {
         return taskNumber;
     }
 
-    public void setTaskNumber(int taskNumber) {
+    private void setTaskNumber(int taskNumber) {
         this.taskNumber = taskNumber;
     }
-
-    public static void setNewTaskNumber(Task [] tasks) {
+    private static void breakAmount(){
         amount = 1;
-        for (int i = 0; i < tasks.length; i++, amount++)
-            tasks[i].setTaskNumber(amount);
+    }
+    public static void setNewTaskNumber(ArrayList <Task> tasks) {
+        breakAmount();
+        for (int i = 0; i < tasks.size(); i++, amount++)
+            tasks.get(i).setTaskNumber(amount);
     }
 
     public void createTask (){
         Scanner input = new Scanner(System.in);
         boolean check = true;
-        SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         taskNumber = amount;
         System.out.println("Введите описание задания, после нажмите Enter");
         target = input.nextLine();
         while (check) {
-            System.out.println("Введите дату исполнения задания в формате dd.MM.yyyy ");
+            System.out.println("Введите дату и время исполнения задания в формате dd.MM.yyyy HH:mm ");
             dateString = input.nextLine();
             try {
                 date.setTime(inputDateFormat.parse(dateString));
