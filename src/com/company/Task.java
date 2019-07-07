@@ -11,12 +11,14 @@ public class Task {
     private String target;
     private GregorianCalendar date;
     private String dateString;
+    private CorrectDateInput CorrectDateAction;
     private int taskNumber;
     private static int amount = 0;
     Task(String target){
         this.target = target;
         this.date = new GregorianCalendar();
         amount++;
+        this.taskNumber = amount;
     }
     Task(){
         date = new GregorianCalendar();
@@ -70,6 +72,7 @@ public class Task {
             System.out.println("Введите дату и время исполнения задания в формате dd.MM.yyyy HH:mm ");
             dateString = input.nextLine();
             try {
+                CorrectDateAction.getCorrectInput().get(checkCorrectDate(dateString));
                 date.setTime(inputDateFormat.parse(dateString));
                 check = false;
             } catch (ParseException e) {
@@ -78,5 +81,12 @@ public class Task {
             }
         }
         System.out.println("Задание успешно добавлено");
+    }
+    private boolean checkCorrectDate (String StrDate) throws ParseException{
+        GregorianCalendar calendar = new GregorianCalendar();
+        GregorianCalendar today = new GregorianCalendar();
+        SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        calendar.setTime(inputDateFormat.parse(StrDate));
+        return today.before(calendar);
     }
 }

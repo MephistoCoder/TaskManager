@@ -61,7 +61,6 @@ public class TaskContainer {
                 System.out.println(i + ". " + task.getTarget() + ". Время : " + dateFormat.format(tmp.getTime()));
                 ++i;
             }
-            checkSize = 1;
             return;
         }
         System.out.println("Нет заданий");

@@ -8,14 +8,10 @@ public class Main {
         starter.start();
         TaskContainer taskContainer = new TaskContainer(starter.getTargets());
         Working process = new Working(taskContainer);
-
         try {
             taskContainer.readTasks();
         }catch (Exception e){
         }
         process.start();
-//        Task task = new Task();
-//        taskContainer.addTask(task);
-//        taskContainer.getTasks();
     }
 }
