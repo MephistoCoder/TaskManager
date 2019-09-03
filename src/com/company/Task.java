@@ -14,6 +14,9 @@ public class Task {
     private CorrectDateInput CorrectDateAction;
     private int taskNumber;
     private static int amount = 0;
+    {
+        this.CorrectDateAction = new CorrectDateInput();
+    }
     Task(String target){
         this.target = target;
         this.date = new GregorianCalendar();
@@ -78,6 +81,8 @@ public class Task {
             } catch (ParseException e) {
                 System.out.println("Неправильнно введена дата");
                 check = true;
+            }catch (NullPointerException e){
+                System.out.println("nullpointer in create task");
             }
         }
         System.out.println("Задание успешно добавлено");

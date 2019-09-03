@@ -16,7 +16,7 @@ public class Starter {
         try {
             this.targets = this.check.action.get(file.exists()).isExist(file);
         }catch (Exception e){
-            System.out.println("Ошибка в Starter");
+            System.out.println("Ошибка в Starter " + e.getMessage());
         }
      }
 
